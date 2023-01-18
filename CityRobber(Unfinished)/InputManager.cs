@@ -5,9 +5,10 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance;
-    public Canvas minigame1;
-    public Canvas minigame2;
-    public Canvas minigame3;
+    public GameObject tap2play;
+    public GameObject city1;
+    public GameObject city2;
+    public GameObject city3;
 
     private void Awake()
     {
@@ -19,7 +20,15 @@ public class InputManager : MonoBehaviour
         {
             Destroy(this);
         }
-    } 
+    }
+    private void Start()
+    {
+        States.Instance.state = GameStates.Idle;
+        tap2play.SetActive(true);
+        city1.SetActive(true);
+        city2.SetActive(false);
+        city3.SetActive(false);
+    }
 
     private void Update()
     {
@@ -36,6 +45,7 @@ public class InputManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             States.Instance.state = GameStates.Play;
+            tap2play.SetActive(false);
         }
     }
 }
